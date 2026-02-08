@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WiFi QR Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>WiFi QR Generator</h1>
+      <p class="tagline">Scan to connect. No app needed.</p>
+    </header>
+
+    <main class="main">
+      <form class="form" id="wifi-form">
+        <div class="field">
+          <label for="ssid">Network name (SSID)</label>
+          <input type="text" id="ssid" placeholder="My WiFi" required autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" autocomplete="off">
+          <span class="hint">Blank for open networks.</span>
+        </div>
+        <div class="field">
+          <label for="security">Security</label>
+          <select id="security">
+            <option value="WPA">WPA/WPA2</option>
+            <option value="WEP">WEP</option>
+            <option value="nopass">None</option>
+          </select>
+        </div>
+        <div class="field row">
+          <input type="checkbox" id="hidden">
+          <label for="hidden">Hidden network</label>
+        </div>
+        <button type="submit" class="btn primary">Generate QR Code</button>
+      </form>
+
+      <section class="output" id="output" hidden>
+        <div class="qr-wrap">
+          <div id="qrcode"></div>
+        </div>
+        <div class="print-credentials" id="print-credentials"></div>
+        <p class="hint">Scan with your phone camera.</p>
+        <div class="actions">
+          <button type="button" class="btn" id="download-btn">Download PNG</button>
+          <button type="button" class="btn" id="print-btn">Print</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Works with iOS and Android.</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

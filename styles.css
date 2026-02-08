@@ -1,0 +1,217 @@
+* { box-sizing: border-box; }
+
+:root {
+  --bg: #1a1b1e;
+  --surface: #242528;
+  --border: #3a3b3f;
+  --text: #e8e6e3;
+  --muted: #9a9895;
+  --accent: #e8a54b;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.app {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+}
+
+.tagline {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.main { flex: 1; }
+
+.form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.field:last-of-type { margin-bottom: 0; }
+
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+
+.field input[type="text"],
+.field input[type="password"],
+.field select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.field select {
+  cursor: pointer;
+  appearance: none;
+  background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239a9895' d='M6 8L1 3h10z'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
+  padding-right: 2rem;
+}
+
+.field.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.field.row label { margin-bottom: 0; cursor: pointer; }
+
+.hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn.primary {
+  margin-top: 1rem;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+}
+
+.btn.primary:hover { filter: brightness(1.1); }
+
+.output {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.output[hidden] { display: none; }
+
+.qr-wrap {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.qr-wrap #qrcode canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.print-credentials { display: none; }
+
+.output .hint { margin: 0 0 0.75rem; }
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.actions .btn { width: auto; min-width: 120px; }
+
+.footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+@media print {
+  @page { size: auto; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .header, .form, .footer, .output .hint, .actions { display: none !important; }
+  .app { max-width: none; padding: 0; height: 100%; }
+  .main { height: 100%; }
+  .output {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    inset: 0 !important;
+    background: #fff;
+    border: none;
+    padding: 0;
+  }
+  .print-credentials {
+    display: block !important;
+    flex-shrink: 0;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #000;
+    border-top: 2px solid #333;
+  }
+  .print-credentials .credential-line { margin: 0.2rem 0; }
+  .print-credentials .credential-label { font-weight: 600; margin-right: 0.3rem; }
+  .qr-wrap {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+  .qr-wrap #qrcode { width: 100%; height: 100%; display: block; }
+  .qr-wrap #qrcode canvas {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill;
+  }
+}
