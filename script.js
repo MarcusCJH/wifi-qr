@@ -102,7 +102,6 @@ function escapeHtml(str) {
   });
 
   var printBtn = document.getElementById('print-btn');
-  if (isMobile()) printBtn.textContent = 'Open PDF';
 
   document.getElementById('download-btn').addEventListener('click', function () {
     var canvas = qrEl.querySelector('canvas');
