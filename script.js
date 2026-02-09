@@ -67,8 +67,13 @@ function escapeHtml(str) {
         doc.text('Password: ' + (password || '(no password)'), pageW / 2, textY + 7, { align: 'center' });
         var blob = doc.output('blob');
         var url = URL.createObjectURL(blob);
-        window.open(url, '_blank');
-        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+        var printWindow = window.open(url, '_blank');
+        setTimeout(function () {
+          if (printWindow && !printWindow.closed) {
+            try { printWindow.print(); } catch (e) {}
+          }
+          URL.revokeObjectURL(url);
+        }, 1500);
       } catch (err) {
         console.error(err);
         if (typeof callback === 'function') callback();
