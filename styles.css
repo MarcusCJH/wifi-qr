@@ -177,41 +177,69 @@ body {
 }
 
 @media print {
-  @page { size: auto; margin: 0; }
-  html, body { margin: 0; padding: 0; background: #fff; }
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    width: 210mm;
+    min-height: 297mm;
+    height: 297mm;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
   .header, .form, .footer, .output .hint, .actions { display: none !important; }
-  .app { max-width: none; padding: 0; height: 100%; }
+  .app { max-width: none; padding: 0; min-height: 297mm; height: 297mm; }
   .main { height: 100%; }
   .output {
     display: flex !important;
     flex-direction: column !important;
     position: fixed !important;
-    inset: 0 !important;
-    background: #fff;
+    top: 0 !important;
+    left: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    background: #fff !important;
     border: none;
     padding: 0;
   }
   .print-credentials {
     display: block !important;
     flex-shrink: 0;
-    padding: 1rem;
+    padding: 8mm;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 5mm;
     color: #000;
-    border-top: 2px solid #333;
+    border-top: 1px solid #333;
   }
-  .print-credentials .credential-line { margin: 0.2rem 0; }
-  .print-credentials .credential-label { font-weight: 600; margin-right: 0.3rem; }
+  .print-credentials .credential-line { margin: 1mm 0; }
+  .print-credentials .credential-label { font-weight: 600; margin-right: 2mm; }
   .qr-wrap {
-    flex: 1;
+    flex: 1 !important;
+    min-height: 180mm;
     margin: 0;
     padding: 0;
     background: #fff;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
-  .qr-wrap #qrcode { width: 100%; height: 100%; display: block; }
+  .qr-wrap #qrcode {
+    width: 160mm !important;
+    height: 160mm !important;
+    min-width: 160mm;
+    min-height: 160mm;
+    display: block !important;
+  }
   .qr-wrap #qrcode canvas {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: fill;
+    width: 160mm !important;
+    height: 160mm !important;
+    min-width: 160mm;
+    min-height: 160mm;
+    object-fit: contain;
   }
 }
